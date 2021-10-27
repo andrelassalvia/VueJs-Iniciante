@@ -5,50 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./vue.js"></script>
-    <title>Document</title>
+    <title>Index VueJS</title>
+    <style>
+      .verde {
+        color: green;
+      }
+
+      .azul {
+        color: blue;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
-      {{mensagem}} <br />
-      Valor Total: {{valorTotal}} <br />
-      Logado: {{logado}} <br />
-      Hobbie: {{hobbies}} <br />
-      Hobbie Preferido: {{hobbies[2]}} <br />
-      Perfil: {{perfil}} <br />
-      Site: {{perfil.site}} <br />
-      Cursos: {{perfil.cursos}} <br />
-      Curso Atual: {{perfil.cursos[0].nome}} <br />
+      {{mensagem.length}} <br />
+      <br />
+      <input type="text" :value="mensagem.substr(0,3)" />
+      <br />
+      {{ 2+2}}
+      <br />
+      <input type="text" :value="2+2" :class="1 == 2 ? 'verde' : estilo" />
+      <input type="text" @keyup="imprimirTexto()" />
+      <button v-on:click="mensagemAlerta()">Alerta</button>
     </div>
     <script>
-      options = {
+      vm = new Vue({
         el: "#app",
         data: {
-          // data guarda as variaveis ou atributos reativos
-          mensagem: "Primeiro template controlado pelo vue.", // string
-          valorTotal: 140.57, // numero
-          logado: true, // boolean
-          hobbies: [
-            //array
-            "dormir",
-            "colecionar video games antigos",
-            "correr",
-            "trilhas",
-          ],
-          perfil: {
-            // objeto
-            nome: "Jorge Sant Ana",
-            site: "jorgesantana.net.br",
-            idade: 32,
-            cursos: [
-              { nome: "Laravel", cargaHoraria: "50 horas" },
-              { nome: "Bancos de dados relacionais", cargaHoraria: "40 horas" },
-            ],
+          mensagem: "expressao",
+          estilo: "azul",
+        },
+        methods: {
+          imprimirTexto: function () {
+            console.log("Teste");
+          },
+          mensagemAlerta: function () {
+            alert("Mensagem de Alerta!");
           },
         },
-      };
-
-      vm = new Vue(options);
-      console.log(vm);
+      });
     </script>
   </body>
 </html>
