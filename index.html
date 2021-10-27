@@ -25,19 +25,26 @@
       {{ 2+2}}
       <br />
       <input type="text" :value="2+2" :class="1 == 2 ? 'verde' : estilo" />
-      <input type="text" @keyup="imprimirTexto()" />
+      <input
+        type="text"
+        @keyup="imprimirTexto('enviando parametro', bollean)"
+      />
       <button v-on:click="mensagemAlerta()">Alerta</button>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
+          bollean: true,
+          xyz: false,
           mensagem: "expressao",
           estilo: "azul",
         },
         methods: {
-          imprimirTexto: function () {
-            console.log("Teste");
+          imprimirTexto: function (t, b) {
+            console.log(t);
+            console.log(b);
+            console.log(this.xyz);
           },
           mensagemAlerta: function () {
             alert("Mensagem de Alerta!");
