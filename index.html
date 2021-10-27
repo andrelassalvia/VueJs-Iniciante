@@ -29,7 +29,7 @@
         type="text"
         @keyup="imprimirTexto('enviando parametro', bollean)"
       />
-      <button v-on:click="mensagemAlerta()">Alerta</button>
+      <button @click="mensagemAlerta($event)">Alerta</button>
     </div>
     <script>
       vm = new Vue({
@@ -46,8 +46,9 @@
             console.log(b);
             console.log(this.xyz);
           },
-          mensagemAlerta: function () {
-            alert("Mensagem de Alerta!");
+          mensagemAlerta: function (e) {
+            // alert("Mensagem de Alerta!");
+            console.log(e);
           },
         },
       });
