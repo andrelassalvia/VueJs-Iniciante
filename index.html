@@ -8,47 +8,67 @@
     <title>Index VueJS</title>
     <style>
       .verde {
-        color: green;
+        background-color: green;
       }
 
       .azul {
-        color: blue;
+        background-color: blue;
+      }
+      .rosa {
+        background-color: crimson;
+      }
+
+      .borda {
+        border: 1px solid;
+      }
+
+      .div-principal {
+        height: 200px;
+        width: 200px;
+      }
+      .div-comum {
+        height: 50px;
+        width: 50px;
+        display: inline-block;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      {{mensagem.length}} <br />
-      <br />
-      <input type="text" :value="mensagem.substr(0,3)" />
-      <br />
-      {{ 2+2}}
-      <br />
-      <input type="text" :value="2+2" :class="1 == 2 ? 'verde' : estilo" />
-      <input
-        type="text"
-        @keyup="imprimirTexto('enviando parametro', bollean)"
-      />
-      <button @click="mensagemAlerta($event)">Alerta</button>
+      <div class="borda div-principal" :class="estilo">
+        Cor: {{cor}}
+        <br />
+        Posicao X = {{ posicaoX }}
+        <br />
+        Posicao Y = {{ posicaoY }}
+      </div>
+      <hr />
+      <div @click="mudarCor('verde')" class="borda div-comum verde"></div>
+      <div @mouseenter="mudarCor('azul')" class="borda div-comum azul"></div>
+      <div
+        @mouseleave="mudarCor('rosa')"
+        class="borda div-comum rosa"
+        @mousemove="coordenadas($event)"
+      ></div>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          bollean: true,
-          xyz: false,
-          mensagem: "expressao",
-          estilo: "azul",
+          cor: "branco",
+          estilo: "branco",
+          posicaoX: 0,
+          posicaoY: 0,
         },
         methods: {
-          imprimirTexto: function (t, b) {
-            console.log(t);
-            console.log(b);
-            console.log(this.xyz);
+          mudarCor: function (c) {
+            this.cor = c;
+            this.estilo = c;
           },
-          mensagemAlerta: function (e) {
-            // alert("Mensagem de Alerta!");
-            console.log(e);
+          coordenadas: function (e) {
+            // console.log(e);
+            this.posicaoX = e.clientX;
+            this.posicaoY = e.clientY;
           },
         },
       });
