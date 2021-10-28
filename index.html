@@ -35,40 +35,47 @@
   </head>
   <body>
     <div id="app">
-      <div class="borda div-principal" :class="estilo">
-        Cor: {{cor}}
-        <br />
-        Posicao X = {{ posicaoX }}
-        <br />
-        Posicao Y = {{ posicaoY }}
-      </div>
+      <a
+        @click.prevent="prevenirComportamento()"
+        href="http://www.google.com"
+        target="_blank"
+        >Link</a
+      >
+      <br />
+      Mensagem: {{msg}}
       <hr />
-      <div @click="mudarCor('verde')" class="borda div-comum verde"></div>
-      <div @mouseenter="mudarCor('azul')" class="borda div-comum azul"></div>
-      <div
-        @mouseleave="mudarCor('rosa')"
-        class="borda div-comum rosa"
-        @mousemove="coordenadas($event)"
-      ></div>
+      <button @click.once="contarCliques()">Botao</button>
+      <p>Cliques: {{ cliques }}</p>
+      <hr />
+      <form @submit.prevent.once="prevenirUmaVez()">
+        <button type="submit">Submit</button>
+      </form>
+      <p>Mensagem: {{prev}}</p>
+      <hr />
+      <input type="text" @keyup.Shift.Enter="verificarTecla($event)" />
+      <p>Tecla Pressionada: {{tecla}}</p>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          cor: "branco",
-          estilo: "branco",
-          posicaoX: 0,
-          posicaoY: 0,
+          msg: "",
+          cliques: 0,
+          prev: "",
+          tecla: "",
         },
         methods: {
-          mudarCor: function (c) {
-            this.cor = c;
-            this.estilo = c;
+          prevenirComportamento: function () {
+            this.msg = "Comportamento padrao ativado";
           },
-          coordenadas: function (e) {
-            // console.log(e);
-            this.posicaoX = e.clientX;
-            this.posicaoY = e.clientY;
+          contarCliques: function () {
+            this.cliques += 1;
+          },
+          prevenirUmaVez: function () {
+            this.prev = "Prevenindo Comportamento padrao";
+          },
+          verificarTecla: function (e) {
+            this.tecla = "Modificadores Acessados com Sucesso";
           },
         },
       });
