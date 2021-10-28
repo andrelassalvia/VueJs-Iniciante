@@ -10,22 +10,14 @@
   </head>
   <body>
     <div id="app">
-      <p
-        @mouseover="exibirTextoAjuda = true"
-        @mouseout="exibirTextoAjuda = false"
-      >
-        Exemplo Tooltip
-      </p>
-      <div v-show="exibirTextoAjuda">
-        <h3>Titulo Texto Ajuda</h3>
-        <p>Conteudo Texto Ajuda</p>
-      </div>
+      <div v-html="elementosHtml">Texto Exemplo</div>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          exibirTextoAjuda: false,
+          elementosHtml:
+            '<p><b>Site:</b></p><a href="http://google.com">Google</a>',
         },
         methods: {},
       });
