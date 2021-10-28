@@ -10,45 +10,24 @@
   </head>
   <body>
     <div id="app">
-      <!-- V-IF simples -->
-      <button @click="exibirSaldo = !exibirSaldo">
-        <span v-if="!exibirSaldo"> Exibir Saldo </span>
-        <span v-if="exibirSaldo"> Ocultar Saldo </span>
-      </button>
-      <!--toggle-->
-      <p>Saldo <span v-if="exibirSaldo">R$: {{ saldo }}</span></p>
-      <hr />
-      <br />
-      <!-- v-if e v-else -->
-      Idade: <input type="text" id="idade" @blur="verificaIdade()" />
-      <p v-if="idade < 18">Menor de Idade</p>
-      <p v-else>Maior de Idade</p>
-      <hr />
-      <br />
-      <!-- v-if, v-else-if, v-else -->
-      Nota: <input type="text" id="inputNota" @blur="setNota()" />
-      <p v-if="nota < 5">Sofrivel</p>
-      <p v-else-if="nota >= 5 && nota <= 7">ok</p>
-      <p v-else>Excelente</p>
+      <p
+        @mouseover="exibirTextoAjuda = true"
+        @mouseout="exibirTextoAjuda = false"
+      >
+        Exemplo Tooltip
+      </p>
+      <div v-show="exibirTextoAjuda">
+        <h3>Titulo Texto Ajuda</h3>
+        <p>Conteudo Texto Ajuda</p>
+      </div>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          saldo: 0,
-          exibirSaldo: false,
-          idade: 0,
-          nota: 0,
+          exibirTextoAjuda: false,
         },
-        methods: {
-          verificaIdade: function () {
-            this.idade = idade.value;
-          },
-          setNota: function () {
-            this.nota = inputNota.value;
-            console.log(inputNota.value);
-          },
-        },
+        methods: {},
       });
     </script>
   </body>
