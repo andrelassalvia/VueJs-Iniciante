@@ -10,19 +10,28 @@
   </head>
   <body>
     <div id="app">
-      <div v-html="elementosHtml">Texto Exemplo</div>
-      <br />
-      <div v-text="textoExemplo"></div>
+      <p>Saldo Inicial: <span v-once>R$:{{saldo}}</span></p>
+      <p>Saldo Final: <span>R$: {{ saldo }}</span></p>
+      <input type="text" id="valor" />
+      <button @click="creditar()">Creditar</button>
+      <button @click="debitar()">Debitar</button>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          elementosHtml:
-            '<p><b>Site:</b></p><a href="http://google.com">Google</a>',
-          textoExemplo: "Texto de Exemplo",
+          saldo: 0,
         },
-        methods: {},
+        methods: {
+          creditar: function () {
+            this.saldo += parseFloat(valor.value);
+            valor.value = "";
+          },
+          debitar: function () {
+            this.saldo -= parseFloat(valor.value);
+            valor.value = "";
+          },
+        },
       });
     </script>
   </body>
