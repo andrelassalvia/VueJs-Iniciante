@@ -11,6 +11,8 @@
   <body>
     <div id="app">
       <div v-html="elementosHtml">Texto Exemplo</div>
+      <br />
+      <div v-text="textoExemplo"></div>
     </div>
     <script>
       vm = new Vue({
@@ -18,6 +20,7 @@
         data: {
           elementosHtml:
             '<p><b>Site:</b></p><a href="http://google.com">Google</a>',
+          textoExemplo: "Texto de Exemplo",
         },
         methods: {},
       });
