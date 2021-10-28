@@ -10,28 +10,43 @@
   </head>
   <body>
     <div id="app">
-      <input type="text" id="inputTexto" /> <br />
-
-      <select id="opcoes">
-        <option value="A">Opcao 1</option>
-        <option value="B">Opcao 2</option>
-        <option value="C">Opcao 3</option>
-      </select>
-      <p id="paragrafo" style="color: red">Paragrafo</p>
-      <div id="inner">Conteudo do HTML</div>
+      <!-- V-IF simples -->
+      <button @click="exibirSaldo = !exibirSaldo">
+        <span v-if="!exibirSaldo"> Exibir Saldo </span>
+        <span v-if="exibirSaldo"> Ocultar Saldo </span>
+      </button>
+      <!--toggle-->
+      <p>Saldo <span v-if="exibirSaldo">R$: {{ saldo }}</span></p>
+      <hr />
       <br />
-      <button @click="capturaId()">Botao</button>
+      <!-- v-if e v-else -->
+      Idade: <input type="text" id="idade" @blur="verificaIdade()" />
+      <p v-if="idade < 18">Menor de Idade</p>
+      <p v-else>Maior de Idade</p>
+      <hr />
+      <br />
+      <!-- v-if, v-else-if, v-else -->
+      Nota: <input type="text" id="inputNota" @blur="setNota()" />
+      <p v-if="nota < 5">Sofrivel</p>
+      <p v-else-if="nota >= 5 && nota <= 7">ok</p>
+      <p v-else>Excelente</p>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
-        data: {},
+        data: {
+          saldo: 0,
+          exibirSaldo: false,
+          idade: 0,
+          nota: 0,
+        },
         methods: {
-          capturaId: function () {
-            console.log(inputTexto.value);
-            console.log(opcoes.value);
-            console.log(paragrafo.style);
-            console.log(inner.innerHTML);
+          verificaIdade: function () {
+            this.idade = idade.value;
+          },
+          setNota: function () {
+            this.nota = inputNota.value;
+            console.log(inputNota.value);
           },
         },
       });
