@@ -6,76 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./vue.js"></script>
     <title>Index VueJS</title>
-    <style>
-      .verde {
-        background-color: green;
-      }
-
-      .azul {
-        background-color: blue;
-      }
-      .rosa {
-        background-color: crimson;
-      }
-
-      .borda {
-        border: 1px solid;
-      }
-
-      .div-principal {
-        height: 200px;
-        width: 200px;
-      }
-      .div-comum {
-        height: 50px;
-        width: 50px;
-        display: inline-block;
-      }
-    </style>
+    <style></style>
   </head>
   <body>
     <div id="app">
-      <a
-        @click.prevent="prevenirComportamento()"
-        href="http://www.google.com"
-        target="_blank"
-        >Link</a
-      >
+      <input type="text" id="inputTexto" /> <br />
+
+      <select id="opcoes">
+        <option value="A">Opcao 1</option>
+        <option value="B">Opcao 2</option>
+        <option value="C">Opcao 3</option>
+      </select>
+      <p id="paragrafo" style="color: red">Paragrafo</p>
+      <div id="inner">Conteudo do HTML</div>
       <br />
-      Mensagem: {{msg}}
-      <hr />
-      <button @click.once="contarCliques()">Botao</button>
-      <p>Cliques: {{ cliques }}</p>
-      <hr />
-      <form @submit.prevent.once="prevenirUmaVez()">
-        <button type="submit">Submit</button>
-      </form>
-      <p>Mensagem: {{prev}}</p>
-      <hr />
-      <input type="text" @keyup.Shift.Enter="verificarTecla($event)" />
-      <p>Tecla Pressionada: {{tecla}}</p>
+      <button @click="capturaId()">Botao</button>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
-        data: {
-          msg: "",
-          cliques: 0,
-          prev: "",
-          tecla: "",
-        },
+        data: {},
         methods: {
-          prevenirComportamento: function () {
-            this.msg = "Comportamento padrao ativado";
-          },
-          contarCliques: function () {
-            this.cliques += 1;
-          },
-          prevenirUmaVez: function () {
-            this.prev = "Prevenindo Comportamento padrao";
-          },
-          verificarTecla: function (e) {
-            this.tecla = "Modificadores Acessados com Sucesso";
+          capturaId: function () {
+            console.log(inputTexto.value);
+            console.log(opcoes.value);
+            console.log(paragrafo.style);
+            console.log(inner.innerHTML);
           },
         },
       });
