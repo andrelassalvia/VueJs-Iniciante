@@ -11,6 +11,10 @@
   <body>
     <div id="app">
       <ul>
+        <li v-for="n in 10">{{ n }}</li>
+      </ul>
+      <hr />
+      <ul>
         <li v-for="(curso, key) in cursos" v-text="key + ' - ' + curso"></li>
       </ul>
       <hr />
