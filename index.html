@@ -10,28 +10,23 @@
   </head>
   <body>
     <div id="app">
-      <p>Saldo Inicial: <span v-once>R$:{{saldo}}</span></p>
-      <p>Saldo Final: <span>R$: {{ saldo }}</span></p>
-      <input type="text" id="valor" />
-      <button @click="creditar()">Creditar</button>
-      <button @click="debitar()">Debitar</button>
+      <ul>
+        <li v-for="(curso, key) in cursos" v-text="key + ' - ' + curso"></li>
+      </ul>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          saldo: 0,
+          cursos: [
+            "laravel",
+            "web completo",
+            "banco de dados",
+            "solid",
+            "angular",
+          ],
         },
-        methods: {
-          creditar: function () {
-            this.saldo += parseFloat(valor.value);
-            valor.value = "";
-          },
-          debitar: function () {
-            this.saldo -= parseFloat(valor.value);
-            valor.value = "";
-          },
-        },
+        methods: {},
       });
     </script>
   </body>
