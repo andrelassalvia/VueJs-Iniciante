@@ -10,19 +10,43 @@
   </head>
   <body>
     <div id="app">
-      <!-- Renderizacao condicional -->
-      <template v-if="saudacao">
-        <h1>Boas Vindas</h1>
-        <p>Conteudo da Tag <strong>Template</strong></p>
-      </template>
+      <h4>Adicionar Pacientes</h4>
+      <span>Nome:</span><input type="text" id="inputNome" /> <br />
+      <span>Idade:</span><input type="text" id="inputIdade" /> <br />
+      <span>Plano:</span><input type="text" id="inputPlano" />
+      <button @click="adicionarPaciente()">Adicionar</button>
+      <hr />
+      <h4>Ultimo Paciente Cadastrado</h4>
+      <p v-if="pacientes.length > 0">
+        Paciente: {{ pacientes[pacientes.length-1].nome }} <br />
+        Idade: {{ pacientes[pacientes.length-1].idade }} <br />
+        Plano: {{ pacientes[pacientes.length-1].plano }}
+      </p>
+      <hr />
+      <h4>Pacientes do Plano Ouro</h4>
+      <p v-for="p in pacientes">{{p.plano == 'ouro' ? p.nome : ''}}</p>
+      <hr />
+      <h4>Pacientes Cadastrados</h4>
+      <p v-for="p in pacientes">{{p.nome}}</p>
+      <br />
+      <hr />
+      <br />
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          saudacao: true,
+          pacientes: [],
         },
-        methods: {},
+        methods: {
+          adicionarPaciente() {
+            this.pacientes.push({
+              nome: inputNome.value,
+              idade: inputIdade.value,
+              plano: inputPlano.value,
+            });
+          },
+        },
       });
     </script>
   </body>
