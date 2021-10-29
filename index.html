@@ -11,6 +11,13 @@
   <body>
     <div id="app">
       <ul>
+        <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
+      </ul>
+      <button @click="adicionarComentario()">Adicionar Comentario</button>
+      <button @click="removerComentario()">Remover Comentario</button>
+      <button @click="atualizarComentario()">Atualizar Comentario</button>
+      <hr />
+      <ul>
         <li v-for="n in 10">{{ n }}</li>
       </ul>
       <hr />
@@ -52,6 +59,11 @@
       vm = new Vue({
         el: "#app",
         data: {
+          comentarios: [
+            { id: 1, comentario: "Comentario 1" },
+            { id: 2, comentario: "Comentario 2" },
+            { id: 3, comentario: "Comentario 3" },
+          ],
           cursos: [
             "laravel",
             "web completo",
@@ -76,6 +88,20 @@
           ],
         },
         methods: {
+          atualizarComentario() {
+            this.$set(this.comentarios, 1, {
+              id: 2,
+              comentario: "Comentario Atualizado",
+            });
+          },
+          removerComentario() {
+            this.comentarios.pop();
+          },
+          adicionarComentario() {
+            // this.comentarios[3] = { id: 4, comentario: "Comentario 4" };
+            // console.log(this.comentarios);
+            this.comentarios.push({ id: 4, comentario: "Comentario 4" });
+          },
           misturarArray() {
             let misturado = [];
 
