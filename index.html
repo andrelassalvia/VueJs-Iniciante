@@ -10,108 +10,19 @@
   </head>
   <body>
     <div id="app">
-      <ul>
-        <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
-      </ul>
-      <button @click="adicionarComentario()">Adicionar Comentario</button>
-      <button @click="removerComentario()">Remover Comentario</button>
-      <button @click="atualizarComentario()">Atualizar Comentario</button>
-      <hr />
-      <ul>
-        <li v-for="n in 10">{{ n }}</li>
-      </ul>
-      <hr />
-      <ul>
-        <li v-for="(curso, key) in cursos" v-text="key + ' - ' + curso"></li>
-      </ul>
-      <hr />
-      <table border="1">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Titulo</th>
-            <th>Descricao</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- desestruturacao de objetos -->
-          <tr v-for="({titulo, descricao}, chave) in cursos2">
-            <td>{{ chave }}</td>
-            <td>{{ titulo }}</td>
-            <td>{{descricao}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <hr />
-      <ul>
-        <li v-for="p in publicacoes" :key="p.id">
-          <div>
-            {{ p.publicacao }}
-            <br />
-            <input type="text" />
-            <hr />
-          </div>
-        </li>
-      </ul>
-      <button @click="misturarArray()">Misturar</button>
+      <!-- Renderizacao condicional -->
+      <template v-if="saudacao">
+        <h1>Boas Vindas</h1>
+        <p>Conteudo da Tag <strong>Template</strong></p>
+      </template>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          comentarios: [
-            { id: 1, comentario: "Comentario 1" },
-            { id: 2, comentario: "Comentario 2" },
-            { id: 3, comentario: "Comentario 3" },
-          ],
-          cursos: [
-            "laravel",
-            "web completo",
-            "banco de dados",
-            "solid",
-            "angular",
-          ],
-          cursos2: {
-            1000: {
-              titulo: "Laravel",
-              descricao: "Domine o framework php",
-            },
-            1001: {
-              titulo: "Banco de dados",
-              descricao: "aprenda os principais BDs relacionais do mercado",
-            },
-          },
-          publicacoes: [
-            { id: 1, publicacao: "Publicacoes 1" },
-            { id: 2, publicacao: "Publicacoes 2" },
-            { id: 3, publicacao: "Publicacoes 3" },
-          ],
+          saudacao: true,
         },
-        methods: {
-          atualizarComentario() {
-            this.$set(this.comentarios, 1, {
-              id: 2,
-              comentario: "Comentario Atualizado",
-            });
-          },
-          removerComentario() {
-            this.comentarios.pop();
-          },
-          adicionarComentario() {
-            // this.comentarios[3] = { id: 4, comentario: "Comentario 4" };
-            // console.log(this.comentarios);
-            this.comentarios.push({ id: 4, comentario: "Comentario 4" });
-          },
-          misturarArray() {
-            let misturado = [];
-
-            misturado[0] = this.publicacoes[2];
-            misturado[1] = this.publicacoes[0];
-            misturado[2] = this.publicacoes[1];
-
-            this.publicacoes = misturado;
-          },
-        },
+        methods: {},
       });
     </script>
   </body>
