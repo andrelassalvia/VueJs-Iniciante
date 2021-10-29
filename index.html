@@ -10,49 +10,35 @@
   </head>
   <body>
     <div id="app">
-      {{paciente}} <br />
-      <input type="text" v-model="paciente" />
-      <hr />
-      <input type="radio" v-model="sexo" value="f" />Feminino
-      <input type="radio" v-model="sexo" value="m" />Masculino
-      <br />
-      {{sexo}}
-      <br />
-      <hr />
-      <select v-model="plano">
-        <option value="" disabled>Selecione um plano</option>
-        <option value="1">Basico 1</option>
-        <option value="2">Basico 2</option>
-        <option value="3">Master</option>
-      </select>
-      <br />
-      <strong>{{plano}}</strong>
-      <br />
-      <hr />
-      <input type="checkbox" v-model="doencas" value="101" />Asma
-      <input type="checkbox" v-model="doencas" value="102" />Diabetes
-      <input type="checkbox" v-model="doencas" value="103" />Rinite
-      <br />
-      {{doencas}}
-      <br />
-      <hr />
-      <textarea v-model="diagnostico"></textarea>
-      <br />
-
-      {{diagnostico}}
+      <span>Paciente:</span><input type="text" v-model="paciente" />
+      <ul>
+        <li v-for="l in lista">{{l.nome}} - {{l.idade}}</li>
+      </ul>
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
-          paciente: "Joao da Silva",
-          sexo: "",
-          plano: "",
-          doencas: [],
-          diagnostico: "",
+          paciente: "",
+          pacientes: [
+            { nome: "Jorge Santana", idade: 32 },
+            { nome: "Joao Santos", idade: 45 },
+            { nome: "Jose Augusto", idade: 18 },
+            { nome: "Junior Silva", idade: 20 },
+            { nome: "Julio Nogueira", idade: 50 },
+          ],
+          lista: [],
         },
         computed: {},
         methods: {},
+        watch: {
+          paciente(valorNovo) {
+            console.log(valorNovo);
+            this.lista = this.pacientes.filter((item) =>
+              item.nome.match(valorNovo)
+            );
+          },
+        },
       });
     </script>
   </body>
