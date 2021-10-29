@@ -12,12 +12,44 @@
     <div id="app">
       {{paciente}} <br />
       <input type="text" v-model="paciente" />
+      <hr />
+      <input type="radio" v-model="sexo" value="f" />Feminino
+      <input type="radio" v-model="sexo" value="m" />Masculino
+      <br />
+      {{sexo}}
+      <br />
+      <hr />
+      <select v-model="plano">
+        <option value="" disabled>Selecione um plano</option>
+        <option value="1">Basico 1</option>
+        <option value="2">Basico 2</option>
+        <option value="3">Master</option>
+      </select>
+      <br />
+      <strong>{{plano}}</strong>
+      <br />
+      <hr />
+      <input type="checkbox" v-model="doencas" value="101" />Asma
+      <input type="checkbox" v-model="doencas" value="102" />Diabetes
+      <input type="checkbox" v-model="doencas" value="103" />Rinite
+      <br />
+      {{doencas}}
+      <br />
+      <hr />
+      <textarea v-model="diagnostico"></textarea>
+      <br />
+
+      {{diagnostico}}
     </div>
     <script>
       vm = new Vue({
         el: "#app",
         data: {
           paciente: "Joao da Silva",
+          sexo: "",
+          plano: "",
+          doencas: [],
+          diagnostico: "",
         },
         computed: {},
         methods: {},
